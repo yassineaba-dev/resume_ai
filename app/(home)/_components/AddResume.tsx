@@ -13,10 +13,12 @@ const AddResume = () => {
         title: "Untitled Resume",
       },
       {
-        onSuccess: (response) => {
-          const documentId = response.data.documentId;
-          router.push(`/dashboard/document/${documentId}/edit`);
-        },
+        onSuccess: (response: ResponseType) => {
+  if (!response.success || !response.data) return;
+
+  const documentId = response.data.documentId;
+  router.push(`/dashboard/document/${documentId}/edit`);
+},
       }
     );
   }, [mutate, router]);
