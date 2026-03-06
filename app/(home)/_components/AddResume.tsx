@@ -13,7 +13,7 @@ const AddResume = () => {
         title: "Untitled Resume",
       },
       {
-        onSuccess: (response: ResponseType) => {
+        onSuccess: (response) => {
   if (!response.success || !response.data) return;
 
   const documentId = response.data.documentId;
