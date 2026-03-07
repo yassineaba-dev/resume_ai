@@ -6,6 +6,25 @@ import documentRoute from "./document";
 
 export const runtime = "edge";
 
+export async function GET() {
+  try {
+    const data = await db.query.documentTable.findMany();
+
+    return Response.json({
+      success: true,
+      data
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    return Response.json({
+      success: false,
+      message: "Server Error"
+    }, { status: 500 });
+  }
+}
+
 const app = new Hono();
 
 app.use("*", logger());
